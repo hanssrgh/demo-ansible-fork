@@ -1,5 +1,5 @@
 - name: update vulnerable packages
-  hosts: {{ target_host}}
+  hosts: {{ target_host }}
   vars:
     insights_issues: {{ target_cve }}
   become: true
