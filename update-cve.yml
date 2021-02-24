@@ -1,7 +1,7 @@
 - name: update vulnerable packages
-  hosts: {{ target_host }}
+  hosts: "{{ target_host }}"
   vars:
-    insights_issues: {{ target_cve }}
+    insights_issues: "{{ target_cve }}"
   become: true
   tasks:
     - name: check for update
