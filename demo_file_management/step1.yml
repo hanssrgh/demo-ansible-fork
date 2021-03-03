@@ -26,13 +26,13 @@
 
   - name: Check if dir1 is exist
     stat:
-      path: {{ dir1 }}
+      path: "{{ dir1 }}"
     register: dir1_status
 
 
   - name: Check if dir2 is exist
     stat:
-      path: {{ dir2 }}
+      path: "{{ dir2 }}"
     register: dir2_status
 
   - name: Both directory is exist
