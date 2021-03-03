@@ -1,0 +1,16 @@
+---
+- name: Perform Step 1 file check
+  hosts: "{{ target_group }}"
+  become: yes
+  gather_facts: yes
+
+  tasks:
+  - debug:
+      msg: "Starting Logging for {{ target_group }}"
+
+
+  - name: Create initial log
+    file: 
+      path: /ftp_3/bpjsks/log/770934_BPJSKS_`date +%Y%m%d`.txt
+      state: file
+    
