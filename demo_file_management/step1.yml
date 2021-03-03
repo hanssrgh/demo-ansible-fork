@@ -3,7 +3,10 @@
   hosts: "{{ target_group }}"
   become: yes
   gather_facts: yes
-
+  
+  vars:
+    date: "{{ lookup('pipe', 'date +%Y%m%d') }}"
+  
   tasks:
   - debug:
       msg: "Starting Logging for {{ target_group }}"
@@ -11,6 +14,6 @@
 
   - name: Create initial log
     file: 
-      path: /ftp_3/testing/log/`date +%Y%m%d`.testing.log
+      path: /ftp_3/testing/log/{{ date }}.testing.log
       state: touch
     
