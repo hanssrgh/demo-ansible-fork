@@ -6,7 +6,9 @@
   
   vars:
     date: "{{ lookup('pipe', 'date +%Y%m%d') }}"
-  
+    dir1: "{{ /core/konven/testing-konven/kirim }}"
+    dir2: "{{ /core/konven/testing-syariah/kirim }}"
+
   tasks:
   - debug:
       msg: "Starting Logging for {{ target_group }}"
@@ -21,3 +23,26 @@
     lineinfile:
       path: /ftp_3/testing/log/{{ date }}.testing.log
       line: log created at {{ date }} for testing
+
+  - name: Check if dir1 is exist
+    stat:
+      path: {{ dir1 }}
+    register: dir1_status
+
+
+  - name: Check if dir2 is exist
+    stat:
+      path: {{ dir2 }}
+    register: dir2_status
+
+  - name: Both directory is exist
+    debug:
+      msg: "Directory dir1 is missing"
+    when: dir1_status.stat.exists == False
+
+  - name: Both directory is exist
+    debug:
+      msg: "Both dir2 is missing"
+    when: dir2_status.stat.exists == False
+
+
