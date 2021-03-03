@@ -11,6 +11,6 @@
 
   - name: Create initial log
     file: 
-      path: /ftp_3/bpjsks/log/770934_BPJSKS_`date +%Y%m%d`.txt
+      path: /ftp_3/testing/log/`date +%Y%m%d`.testing.log
       state: file
     
