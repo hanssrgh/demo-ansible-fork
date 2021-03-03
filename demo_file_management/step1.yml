@@ -12,5 +12,5 @@
   - name: Create initial log
     file: 
       path: /ftp_3/testing/log/`date +%Y%m%d`.testing.log
-      state: file
+      state: touch
     
