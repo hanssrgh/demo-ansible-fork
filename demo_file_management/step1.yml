@@ -8,16 +8,20 @@
   - debug:
       msg: "Starting Logging for {{ target_group }}"
 
-  - name: set log var fact
+  - name: set log1 var fact
     set_fact:
       log1: "/ftp_3/testing/log/{{ date }}.testing.log"
   
-  - name: set log var fact
+  - name: set f1 var fact
     set_fact:
       f1: "123456_testing_{{ date }}.txt"
 
+  - name: set f11 var fact
+    set_fact:
+      f11: "/ftp_3/testing/kirim/123456_testing_{{ date }}.txt"
+
   - debug:
-      msg: "Test var {{ log1 }} and {{ f1 }}"
+      msg: "Test var {{ log1 }} and {{ f1 }} and {{ f11 }}"
 
   - name: Create initial log file
     file: 

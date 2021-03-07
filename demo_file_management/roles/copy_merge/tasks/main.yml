@@ -1,4 +1,17 @@
 ---
+- name: Copying file f1 to dir3
+  copy:
+    src: "{{ dir1 }}/{{ f1 }}"
+    dest: "{{ dir3 }}"
+    remote_src: yes
+
+- name: Copying file f1 to dir4
+  copy:
+    src: "{{ dir1 }}/{{ f1 }}"
+    dest: "{{ dir4 }}"
+    remote_src: yes
+
+
 - name: Start logging
   lineinfile:
     path: "{{ log1 }}"
