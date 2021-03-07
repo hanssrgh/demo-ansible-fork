@@ -8,6 +8,9 @@
   - debug:
       msg: "Starting Logging for {{ target_group }}"
 
+  - debug:
+      msg: "Test var {{ log1 }}"
+
   - name: Create initial log file
     file: 
       path: /ftp_3/testing/log/{{ date }}.testing.log
