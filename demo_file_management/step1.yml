@@ -4,12 +4,7 @@
   become: yes
   gather_facts: yes
   
-  vars:
-    date: "{{ lookup('pipe', 'date +%Y%m%d') }}"
-    dir1: "{{ '/core/konven/testing-konven/kirim' }}"
-    dir2: "{{ '/core/konven/testing-syariah/kirim' }}"
-
-  tasks:
+    tasks:
   - debug:
       msg: "Starting Logging for {{ target_group }}"
 
@@ -34,19 +29,18 @@
       path: "{{ dir2 }}"
     register: dir2_status
 
-  - name: Both directory is exists
-    debug:
-      msg: "Both directory is exists"
+  - name: Load roles when both directory is available
+    include_role:
+      name: "copy_merge"
     when: dir1_status.stat.exists and dir2_status.stat.exists
 
-  - name: Check if dir1 is missing
-    debug:
+  - name: Fail when dir1 is missing
+    fail:
       msg: "Directory dir1 is missing"
     when: dir1_status.stat.exists == False
 
-  - name: Check if dir2 is missing
-    debug:
-      msg: "Both dir2 is missing"
+  - name: Fail when dir2 is missing
+    fail:
+      msg: "Directory dir2 is missing"
     when: dir2_status.stat.exists == False
-
 
