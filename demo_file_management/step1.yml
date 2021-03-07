@@ -4,10 +4,9 @@
   become: yes
   gather_facts: yes
   
-    tasks:
+  tasks:
   - debug:
       msg: "Starting Logging for {{ target_group }}"
-
 
   - name: Create initial log file
     file: 
