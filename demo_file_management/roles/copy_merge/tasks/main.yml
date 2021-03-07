@@ -11,8 +11,15 @@
     dest: "{{ dir4 }}"
     remote_src: yes
 
-
-- name: Start logging
+- name: log for copied files
   lineinfile:
     path: "{{ log1 }}"
     line: "{{ date }} file {{ f1 }} for konven and syariah found and copied locally"
+
+- name: merge files
+  shell: cat {{ $dir3 }}/{{ $f1 }} {{ $dir4 }}/{{ $f1 }} >> {{ $f11 }}
+
+- name: log for merge files
+  lineinfile:
+    path: "{{ log1 }}"
+    line: "{{ date }} file {{ f1 }} for konven and syariah has been merged"
