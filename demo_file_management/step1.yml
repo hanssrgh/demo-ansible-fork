@@ -10,7 +10,7 @@
 
   - name: Create initial log file
     file: 
-      path: "{{ log1 }}"
+      path: /ftp_3/testing/log/{{ date }}.testing.log
       state: touch
     
   - name: create log into log file
