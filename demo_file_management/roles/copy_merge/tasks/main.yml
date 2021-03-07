@@ -1,13 +1,13 @@
 ---
-- name: Copying file f1 to dir3
+- name: Copying file konven f1 to dir3
   copy:
     src: "{{ dir1 }}/{{ f1 }}"
     dest: "{{ dir3 }}"
     remote_src: yes
 
-- name: Copying file f1 to dir4
+- name: Copying file syariah f1 to dir4
   copy:
-    src: "{{ dir1 }}/{{ f1 }}"
+    src: "{{ dir2 }}/{{ f1 }}"
     dest: "{{ dir4 }}"
     remote_src: yes
 
