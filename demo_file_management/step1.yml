@@ -10,7 +10,7 @@
 
   - name: set log var fact
     set_fact:
-    log1: "/ftp_3/testing/log/{{ date }}.testing.log"
+      log1: "/ftp_3/testing/log/{{ date }}.testing.log"
   
   - debug:
       msg: "Test var {{ log1 }}"
