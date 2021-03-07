@@ -10,12 +10,12 @@
 
   - name: Create initial log file
     file: 
-      path: /ftp_3/testing/log/{{ date }}.testing.log
+      path: "{{ log1 }}"
       state: touch
     
   - name: create log into log file
     lineinfile:
-      path: /ftp_3/testing/log/{{ date }}.testing.log
+      path: "{{ log1 }}"
       line: log created at {{ date }} for testing
 
   - name: Check if dir1 is exists
@@ -35,7 +35,7 @@
 
   - name: Fail when both directory is missing
     fail:
-      msg: "Directory dir1 is missing"
+      msg: "Both directory is missing!!"
     when: dir1_status.stat.exists == False and dir2_status.stat.exists == False
 
   - name: Fail when dir1 is missing
