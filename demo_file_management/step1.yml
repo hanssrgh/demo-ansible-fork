@@ -8,17 +8,21 @@
   - debug:
       msg: "Starting Logging for {{ target_group }}"
 
+  - name: set log var fact
+    set_fact:
+    log1: "{{ audit_f/ftp_3/testing/log/{{ date }}.testing.log"
+  
   - debug:
       msg: "Test var {{ log1 }}"
 
   - name: Create initial log file
     file: 
-      path: /ftp_3/testing/log/{{ date }}.testing.log
+      path: "{{ log1 }}"
       state: touch
     
   - name: create log into log file
     lineinfile:
-      path: /ftp_3/testing/log/{{ date }}.testing.log
+      path: "{{ log1 }}"
       line: log created at {{ date }} for testing
 
   - name: Check if dir1 is exists
