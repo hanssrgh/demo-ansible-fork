@@ -17,7 +17,7 @@
     line: "{{ date }} file {{ f1 }} for konven and syariah found and copied locally"
 
 - name: merge files
-  shell: cat "{{ $dir3 }}"/"{{ $f1 }}" "{{ $dir4 }}"/"{{ $f1 }}" >> "{{ $f11 }}"
+  shell: "cat {{ $dir3 }}/{{ $f1 }} {{ $dir4 }}/{{ $f1 }} >> {{ $f11 }}"
 
 - name: log for merge files
   lineinfile:
