@@ -15,7 +15,7 @@
     
   - name: create log into log file
     lineinfile:
-      path: "{{ log1 }}"
+      path: /ftp_3/testing/log/{{ date }}.testing.log
       line: log created at {{ date }} for testing
 
   - name: Check if dir1 is exists
