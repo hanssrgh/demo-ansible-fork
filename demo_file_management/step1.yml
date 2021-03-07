@@ -33,6 +33,11 @@
       name: "copy_merge"
     when: dir1_status.stat.exists and dir2_status.stat.exists
 
+  - name: Fail when both directory is missing
+    fail:
+      msg: "Directory dir1 is missing"
+    when: dir1_status.stat.exists == False and dir2_status.stat.exists == False
+
   - name: Fail when dir1 is missing
     fail:
       msg: "Directory dir1 is missing"
