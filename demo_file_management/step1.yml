@@ -12,8 +12,12 @@
     set_fact:
       log1: "/ftp_3/testing/log/{{ date }}.testing.log"
   
+  - name: set log var fact
+    set_fact:
+      f1: "123456_testing_{{ date }}.txt"
+
   - debug:
-      msg: "Test var {{ log1 }}"
+      msg: "Test var {{ log1 }} and {{ f1 }}"
 
   - name: Create initial log file
     file: 

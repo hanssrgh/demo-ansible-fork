@@ -1,5 +1,4 @@
 date: "{{ lookup('pipe', 'date +%Y%m%d') }}"
-log1: "{{ /ftp_3/testing/log/{{ date }}.testing.log }}"
 dir1: "{{ '/core/konven/testing-konven/kirim' }}"
 dir2: "{{ '/core/konven/testing-syariah/kirim' }}"
 dir3: "{{ '/ftp_3/testing/temp/konven' }}"

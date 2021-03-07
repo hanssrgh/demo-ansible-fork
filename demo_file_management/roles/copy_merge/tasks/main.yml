@@ -1,0 +1,5 @@
+---
+- name: Start logging
+  lineinfile:
+    path: "{{ log1 }}"
+    line: "{{ date }} file {{ log1 }} for konven and syariah found and copied locally"
