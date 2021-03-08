@@ -1,5 +1,5 @@
 ---
-- name: Perform Step 1 file check
+- name: Perform file management playbook
   hosts: "{{ target_group }}"
   become: yes
   gather_facts: yes
