@@ -19,7 +19,30 @@
 - name: merge files
   shell: "cat {{ dir3 }}/{{ f1 }} {{ dir4 }}/{{ f1 }} >> {{ f11 }}"
 
-- name: log for merge files
+- name: log for merged files
   lineinfile:
     path: "{{ log1 }}"
     line: "{{ date }} file {{ f1 }} for konven and syariah has been merged"
+
+- name: Check if f11 is exists
+    stat:
+      path: "{{ f11 }}"
+    register: f11_status
+
+- name: log if f11 file not exist
+  lineinfile:
+    path: "{{ log1 }}"
+    line: "{{ date }} backup locally failed"
+  when: f11_status.stat.exists == False
+
+- name: Fail when f11 is missing
+    fail:
+      msg: "File f11 is missing"
+    when: f11_status.stat.exists == False
+
+- name: Copying f11 to dir0
+  copy:
+    src: "{{ f11 }}"
+    dest: "{{ dir0 }}"
+    remote_src: yes
+  register: backup_ok
