@@ -36,9 +36,9 @@
   when: f11_status.stat.exists == False
 
 - name: Fail when f11 is missing
-    fail:
-      msg: "File f11 is missing"
-    when: f11_status.stat.exists == False
+  fail:
+    msg: "File f11 is missing"
+  when: f11_status.stat.exists == False
 
 - name: Copying f11 to dir0
   copy:
