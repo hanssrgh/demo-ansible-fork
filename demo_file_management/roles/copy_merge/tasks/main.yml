@@ -25,9 +25,9 @@
     line: "{{ date }} file {{ f1 }} for konven and syariah has been merged"
 
 - name: Check if f11 is exists
-    stat:
-      path: "{{ f11 }}"
-    register: f11_status
+  stat:
+    path: "{{ f11 }}"
+  register: f11_status
 
 - name: log if f11 file not exist
   lineinfile:
