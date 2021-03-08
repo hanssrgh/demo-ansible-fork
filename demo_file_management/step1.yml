@@ -43,7 +43,7 @@
       path: "{{ dir2 }}"
     register: dir2_status
 
-  - name: Load roles when both directory is available
+  - name: Load copy_merge roles when both directory is available
     include_role:
       name: "copy_merge"
     when: dir1_status.stat.exists and dir2_status.stat.exists
@@ -53,13 +53,13 @@
       msg: "Both directory is missing!!"
     when: dir1_status.stat.exists == False and dir2_status.stat.exists == False
 
-  - name: Fail when dir1 is missing
-    fail:
-      msg: "Directory dir1 is missing"
+  - name: Load dir1 roles when dir1 is missing
+    include_role:
+      name: "dir1_missing"
     when: dir1_status.stat.exists == False
 
-  - name: Fail when dir2 is missing
-    fail:
-      msg: "Directory dir2 is missing"
+  - name: Load dir2 roles when dir is missing
+    include_role:
+      name: "dir2_missing"
     when: dir2_status.stat.exists == False
 

@@ -1,0 +1,34 @@
+---
+- name: Copying file konven f1 to dir5
+  copy:
+    src: "{{ dir2 }}/{{ f1 }}"
+    dest: "{{ dir5 }}"
+    remote_src: yes
+
+- name: log for copied files
+  lineinfile:
+    path: "{{ log1 }}"
+    line: "{{ date }} file {{ f1 }} for syariah found and copied locally"
+
+- name: Check if f11 is exists
+  stat:
+    path: "{{ f11 }}"
+  register: f11_status
+
+- name: log if f11 file not exist
+  lineinfile:
+    path: "{{ log1 }}"
+    line: "{{ date }} backup locally failed"
+  when: f11_status.stat.exists == False
+
+- name: Fail when f11 is missing
+  fail:
+    msg: "File f11 is missing"
+  when: f11_status.stat.exists == False
+
+- name: Copying f11 to dir0
+  copy:
+    src: "{{ f11 }}"
+    dest: "{{ dir0 }}"
+    remote_src: yes
+  notify: sending_status
