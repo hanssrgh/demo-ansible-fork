@@ -46,3 +46,16 @@
     dest: "{{ dir0 }}"
     remote_src: yes
   register: backup_ok
+  notify: sending_status
+
+- name: Cleanup konven f1 from dir3
+  file:
+    path: "{{ dir3 }}/{{ f1 }}"
+    state: absent
+    
+
+- name: Cleanup syariah f1 from dir3
+  file:
+    path: "{{ dir4 }}/{{ f1 }}"
+    state: absent
+    
