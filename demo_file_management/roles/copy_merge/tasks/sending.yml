@@ -1,4 +1,15 @@
 ---
+- name: check FTP server
+  shell: nc -z {{ h0 }} 21
+  register: result
+  ignore_errors: yes
+
+- name: failed when FTP server is not available
+  fail:
+    msg: "FTP server is not available"
+  when: result.rc != 0
+
 - name: sending tasks
   debug:
     msg: "File is succesfully sent"
+
