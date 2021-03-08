@@ -31,8 +31,7 @@
 
 - debug:
     var: ftpresult
-    verbosity: 2
-
+    
 - name: sending tasks
   debug:
     msg: "File is succesfully sent"
