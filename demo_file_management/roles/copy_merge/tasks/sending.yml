@@ -4,10 +4,34 @@
   register: result
   ignore_errors: yes
 
+- name: log if FTP server not available
+  lineinfile:
+    path: "{{ log1 }}"
+    line: "FTP {{ h0 }} UNREACHABLE on {{ date }}"
+  when: result.rc != 0
+  
 - name: failed when FTP server is not available
   fail:
     msg: "FTP server is not available"
   when: result.rc != 0
+
+- name: log if FTP server is available
+  lineinfile:
+    path: "{{ log1 }}"
+    line: "FTP {{ h0 }} REACHABLE on {{ date }}"
+
+- name: upload file
+  shell: |
+    lftp {{ h0 }}<<EOF
+    cd testing
+    put {{ f1 }}
+    bye
+    EOF
+  register: ftpresult
+
+- debug:
+    var: ftpresult
+    verbosity: 2
 
 - name: sending tasks
   debug:
