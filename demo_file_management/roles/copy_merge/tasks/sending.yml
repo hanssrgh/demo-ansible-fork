@@ -24,7 +24,7 @@
   shell: |
     lftp {{ h0 }}<<EOF
     cd testing
-    put {{ f1 }}
+    put {{ dir5 }}/{{ f1 }}
     bye
     EOF
   register: ftpresult
