@@ -55,7 +55,7 @@
 
   - name: Fail when both directory is missing
     fail:
-      msg: "Both directory is missing!!"
+      msg: "Both directory is missing!! Please Check NFS server"
     when: dir1_status.stat.exists == False and dir2_status.stat.exists == False
 
   - name: Load copy_merge role when both directory and file inside directory is available

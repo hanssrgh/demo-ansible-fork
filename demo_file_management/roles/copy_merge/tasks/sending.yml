@@ -2,7 +2,7 @@
 - name: check availability of FTP server
   wait_for:
     port: 21
-    host: '{{ h0 }}'
+    host: "{{ h0 }}"
     search_regex: vsFTPd
     delay: 1
   register: result
