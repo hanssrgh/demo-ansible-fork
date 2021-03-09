@@ -30,6 +30,8 @@
     lftp {{ h0 }}<<EOF
     cd testing
     put {{ dir5 }}/{{ f1 }}
+    lcd {{ dir6 }}
+		get {{ f1 }}
     bye
     EOF
   register: ftpresult
