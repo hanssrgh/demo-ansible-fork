@@ -42,11 +42,25 @@
     stat:
       path: "{{ dir2 }}"
     register: dir2_status
+  
+  - name: Check f1 on dir1 is exists
+    stat:
+      path: "{{ dir1 }}/{{ f1 }}"
+    register: d1f1_status
+
+  - name: Check f1 on dir2 is exists
+    stat:
+      path: "{{ dir2 }}/{{ f1 }}"
+    register: d2f1_status
 
   - name: Load copy_merge roles when both directory is available
     include_role:
       name: "copy_merge"
-    when: dir1_status.stat.exists and dir2_status.stat.exists
+    when: 
+      - dir1_status.stat.exists
+      - dir2_status.stat.exists
+      - d1f1_status.stat.exists
+      - d2f1_status.stat.exists
 
   - name: Fail when both directory is missing
     fail:
