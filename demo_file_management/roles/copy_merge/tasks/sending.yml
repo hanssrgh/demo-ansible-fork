@@ -11,12 +11,12 @@
   lineinfile:
     path: "{{ log1 }}"
     line: "FTP {{ h0 }} UNREACHABLE on {{ date }}"
-  when: result.rc != 0
+  when: result.failed == True
   
 - name: failed when FTP server is not available
   fail:
     msg: "FTP server is not available"
-  when: result.rc != 0
+  when: result.failed == True
 
 - name: log if FTP server is available
   lineinfile:
