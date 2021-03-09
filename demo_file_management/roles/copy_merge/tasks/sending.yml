@@ -5,7 +5,9 @@
     host: "{{ h0 }}"
     search_regex: vsFTPd
     delay: 1
+    timeout: 5
   register: result
+  ignore_errors: yes
 
 - name: log if FTP server not available
   lineinfile:
