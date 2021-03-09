@@ -53,7 +53,12 @@
       path: "{{ dir2 }}/{{ f1 }}"
     register: d2f1_status
 
-  - name: Load copy_merge roles when both directory is available
+  - name: Fail when both directory is missing
+    fail:
+      msg: "Both directory is missing!!"
+    when: dir1_status.stat.exists == False and dir2_status.stat.exists == False
+
+  - name: Load copy_merge role when both directory and file inside directory is available
     include_role:
       name: "copy_merge"
     when: 
@@ -61,19 +66,22 @@
       - dir2_status.stat.exists
       - d1f1_status.stat.exists
       - d2f1_status.stat.exists
-
-  - name: Fail when both directory is missing
-    fail:
-      msg: "Both directory is missing!!"
-    when: dir1_status.stat.exists == False and dir2_status.stat.exists == False
-
-  - name: Load dir1 roles when dir1 is missing
+  
+  - name: Load d2f1_miss role when d2f1 is missing
     include_role:
-      name: "dir1_missing"
-    when: dir1_status.stat.exists == False
+      name: "d2f1_miss"
+    when: 
+      - dir1_status.stat.exists
+      - dir2_status.stat.exists
+      - d1f1_status.stat.exists
+      - d2f1_status.stat.exists == False
 
-  - name: Load dir2 roles when dir is missing
+
+  - name: Load d1f1_miss role when d2f1 is missing
     include_role:
-      name: "dir2_missing"
-    when: dir2_status.stat.exists == False
-
+      name: "d1f1_miss"
+    when: 
+      - dir1_status.stat.exists
+      - dir2_status.stat.exists
+      - d1f1_status.stat.exists == False
+      - d2f1_status.stat.exists 
