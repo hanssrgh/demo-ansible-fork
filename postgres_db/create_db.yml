@@ -1,11 +1,11 @@
 ---
-- name: Create db on Postgres
+- name: Create or delete db on Postgres
   hosts: "{{ target_node }}"
   become: yes
   gather_facts: yes
 
   tasks:
-  - name: ensure the database is present
+  - name: ensure the database is present/absent
     postgresql_db: >
       state={{ state }}
       db={{ dbname }}
