@@ -7,7 +7,7 @@
   tasks:
   - name: ensure the database is present
     postgresql_db: >
-      state=present
+      state={{ state }}
       db={{ dbname }}
       login_user={{ dbuser }}
       login_password={{ dbpass }}
