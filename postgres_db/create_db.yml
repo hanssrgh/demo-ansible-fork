@@ -1,0 +1,14 @@
+---
+- name: Create db on Postgres
+  hosts: "{{ target_node }}"
+  become: yes
+  gather_facts: yes
+
+  tasks:
+  - name: ensure the database is present
+    postgresql_db: >
+      state=present
+      db={{ dbname }}
+      login_user={{ dbuser }}
+      login_host={{ dbhost }}
+      port={{ dbport }}
