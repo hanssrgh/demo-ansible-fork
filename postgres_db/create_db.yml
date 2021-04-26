@@ -10,5 +10,6 @@
       state=present
       db={{ dbname }}
       login_user={{ dbuser }}
+      login_password={{ dbpass }}
       login_host={{ dbhost }}
       port={{ dbport }}
