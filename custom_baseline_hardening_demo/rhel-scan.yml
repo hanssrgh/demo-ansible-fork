@@ -6,7 +6,7 @@
 
   tasks:
   - debug:
-      msg: "Starting Audit for all
+      msg: "Starting Audit for all"
   
   - name: Running the following sections
     debug:
