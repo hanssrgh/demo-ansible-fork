@@ -1,21 +1,21 @@
 ---
 - name: Perform Baseline Scanning
-  hosts: all
+  hosts: "{{ target_group }}"
   become: yes
   gather_facts: yes
 
   tasks:
   - debug:
-      msg: "Starting Audit for all"
+      msg: "Starting Audit for {{ target_group }}"
   
   - name: Running the following sections
     debug:
-      msg: automation
+      msg: "{{ user_select }}"
 
-  - name: "Loading role for all"
+  - name: "Loading role for {{ target_group }}"
     include_role:
       name: "rhel_scan"
-    loop: automation
+    loop: "{{ user_select }}"
     loop_control:
       loop_var: section_num
 
