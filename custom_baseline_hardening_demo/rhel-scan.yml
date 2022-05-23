@@ -1,21 +1,21 @@
 ---
 - name: Perform Baseline Scanning
-  hosts: "{{ target_group }}"
+  hosts: all
   become: yes
   gather_facts: yes
 
   tasks:
   - debug:
-      msg: "Starting Audit for {{ target_group }}"
+      msg: "Starting Audit for all
   
   - name: Running the following sections
     debug:
-      msg: "{{ user_select }}"
+      msg: automation
 
-  - name: "Loading role for {{ target_group }}"
+  - name: "Loading role for all"
     include_role:
       name: "rhel_scan"
-    loop: "{{ user_select }}"
+    loop: automation
     loop_control:
       loop_var: section_num
 
@@ -41,7 +41,7 @@
       host: smtp.gmail.com
       port: 587
       username: "{{ gmail_user }}"
-      password: "{{ gmail_password }}"
+      password: "qzaqbbdsggrraolr"
       to: "{{ gmail_rcpt }}"
       subject: "{{ ansible_hostname }} Audit Report"
       body: "{{ ansible_hostname }} has been audited. See attached report."
