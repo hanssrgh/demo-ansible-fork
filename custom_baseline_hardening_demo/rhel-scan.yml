@@ -41,7 +41,7 @@
       host: smtp.gmail.com
       port: 587
       username: "{{ gmail_user }}"
-      password: 
+      password: "{{ gmail_pass }}"
       to: "{{ gmail_rcpt }}"
       subject: "{{ ansible_hostname }} Audit Report"
       body: "{{ ansible_hostname }} has been audited. See attached report."
