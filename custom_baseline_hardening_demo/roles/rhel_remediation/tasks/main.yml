@@ -34,7 +34,7 @@
   register: backup_network_manager_conf
   notify:
     - reload NetworkManager
-  when: "'dns_remediation' in remediation_task"
+#  when: "'dns_remediation' in remediation_task"
 
 - name: Enforce resolv.conf
   template:
@@ -47,13 +47,13 @@
   register: backup_resolv_conf
   notify:
     - reload NetworkManager
-  when: "'dns_remediation' in remediation_task"
+#  when: "'dns_remediation' in remediation_task"
 
-- set_stats:
-    data:
-      network_manager_conf_backup_file: "{{ backup_network_manager_conf.backup_file }}"
-      resolv_conf_backup_file: "{{ backup_resolv_conf.backup_file }}"
-  when: "'dns_remediation' in remediation_task"
+#- set_stats:
+#    data:
+#      network_manager_conf_backup_file: "{{ backup_network_manager_conf.backup_file }}"
+#      resolv_conf_backup_file: "{{ backup_resolv_conf.backup_file }}"
+#  when: "'dns_remediation' in remediation_task"
 
 - name: Ensure SELinux is installed
   yum:
