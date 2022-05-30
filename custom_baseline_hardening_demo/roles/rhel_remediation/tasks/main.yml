@@ -59,17 +59,17 @@
   yum:
     name: libselinux
     state: latest
-  when: "'install_selinux' in remediation_task"
+#  when: "'install_selinux' in remediation_task"
 
 - name: Ensure rsyslog is installed
   yum:
     name: rsyslog
     state: latest
-  when: "'install_rsyslog' in remediation_task"
+#  when: "'install_rsyslog' in remediation_task"
 
 - name: Ensure all security software and packages are updated/installed
   yum:
     name: '*'
     security: yes
     state: latest
-  when: "'install_security_updates' in remediation_task"
+#  when: "'install_security_updates' in remediation_task"
