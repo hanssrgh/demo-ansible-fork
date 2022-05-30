@@ -4,14 +4,14 @@
 - name: Enforce ntp.conf
   template:
     src: roles/rhel_remediation/templates/ntp.conf.j2
-    dest: /etc/ntp.conf
+    dest: /etc/chrony.conf 
     owner: root
     group: root
     mode: 0644
     backup: yes
   register: backup_ntp_conf
   notify:
-    - "restart ntpd services"
+    - "restart chronyd services"
   when: "'ntp_remediation' in remediation_task"
 
 - set_stats:
