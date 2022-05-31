@@ -6,8 +6,4 @@
       - name: Create local user
         win_user:
           name: "{{ var_user }}"
-          password: "{{ var_password }}"
-          state: present
-          groups:
-            - Users
-            - "{{ win_group }}"
+          state: absent
