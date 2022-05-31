@@ -1,57 +1,40 @@
 # {{ ansible_managed }}
-# For more information about this file, see the man pages
-# ntp.conf(5), ntp_acc(5), ntp_auth(5), ntp_clock(5), ntp_misc(5), ntp_mon(5).
-
-driftfile /var/lib/ntp/drift
-
-# Permit time synchronization with our time source, but do not
-# permit the source to query or modify the service on this system.
-restrict default nomodify notrap nopeer noquery
-
-# Permit all access over the loopback interface.  This could
-# be tightened as well, but to do so would effect some of
-# the administrative functions.
-restrict 127.0.0.1 
-restrict ::1
-
-# Hosts on local network are less restricted.
-#restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap
-
 # Use public servers from the pool.ntp.org project.
 # Please consider joining the pool (http://www.pool.ntp.org/join.html).
 server 0.id.pool.ntp.org iburst
 server 1.id.pool.ntp.org iburst
+#server 1.rhel.pool.ntp.org iburst
+#server 2.rhel.pool.ntp.org iburst
+#server 3.rhel.pool.ntp.org iburst
 
-#broadcast 192.168.1.255 autokey	# broadcast server
-#broadcastclient			# broadcast client
-#broadcast 224.0.1.1 autokey		# multicast server
-#multicastclient 224.0.1.1		# multicast client
-#manycastserver 239.255.254.254		# manycast server
-#manycastclient 239.255.254.254 autokey # manycast client
+# Record the rate at which the system clock gains/losses time.
+driftfile /var/lib/chrony/drift
 
-# Enable public key cryptography.
-#crypto
+# Allow the system clock to be stepped in the first three updates
+# if its offset is larger than 1 second.
+makestep 1.0 3
 
-includefile /etc/ntp/crypto/pw
+# Enable kernel synchronization of the real-time clock (RTC).
+rtcsync
 
-# Key file containing the keys and key identifiers used when operating
-# with symmetric key cryptography. 
-keys /etc/ntp/keys
+# Enable hardware timestamping on all interfaces that support it.
+#hwtimestamp *
 
-# Specify the key identifiers which are trusted.
-#trustedkey 4 8 42
+# Increase the minimum number of selectable sources required to adjust
+# the system clock.
+#minsources 2
 
-# Specify the key identifier to use with the ntpdc utility.
-#requestkey 8
+# Allow NTP client access from local network.
+allow 0.0.0.0/0
 
-# Specify the key identifier to use with the ntpq utility.
-#controlkey 8
+# Serve time even if not synchronized to a time source.
+local stratum 10
 
-# Enable writing of statistics records.
-#statistics clockstats cryptostats loopstats peerstats
+# Specify file containing keys for NTP authentication.
+#keyfile /etc/chrony.keys
 
-# Disable the monitoring facility to prevent amplification attacks using ntpdc
-# monlist command when default restrict does not include the noquery flag. See
-# CVE-2013-5211 for more details.
-# Note: Monitoring will not be disabled with the limited restriction flag.
-disable monitor
+# Specify directory for log files.
+logdir /var/log/chrony
+
+# Select which information is logged.
+#log measurements statistics tracking
