@@ -8,3 +8,6 @@
           domain_admin_user: '{{ var_user }}'
           domain_admin_password: '{{ var_password }}'
           state: workgroup
+        register: workgroup_state
+      - win_reboot:
+        when: workgroup_state.reboot_required
