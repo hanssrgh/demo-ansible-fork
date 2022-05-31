@@ -1,0 +1,10 @@
+---
+  - name: Dis Join Domain
+    hosts: all
+    gather_facts: no
+    tasks:
+      - ansible.windows.win_domain_membership:
+          workgroup_name: WORKGROUP
+          domain_admin_user: '{{ var_user }}'
+          domain_admin_password: '{{ var_password }}'
+          state: workgroup
