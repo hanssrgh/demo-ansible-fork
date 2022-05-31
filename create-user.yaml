@@ -3,11 +3,6 @@
     hosts: all
     gather_facts: no
     tasks:
-      - name: Create local group to contain new users
-        win_group:
-          name: LocalGroup
-          description: Allow access to C:\Development folder
-
       - name: Create local user
         win_user:
           name: "{{ var_user }}"
