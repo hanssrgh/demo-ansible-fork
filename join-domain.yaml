@@ -4,9 +4,9 @@
     gather_facts: no
     tasks:
       - win_domain_membership:
-          dns_domain_name: virtus.demo
+          dns_domain_name: "{{ var_domain }}"
           hostname: server1
-          domain_admin_user: "administrator@virtus.demo"
+          domain_admin_user: "{{ var_user }}"
           domain_admin_password: "{{ var_password }}"
           state: domain
         register: domain_state
