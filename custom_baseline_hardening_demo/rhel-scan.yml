@@ -38,7 +38,7 @@
 
   - name: Send Email with audit files
     mail:
-      host: smtp.gmail.com
+      host: "{{ smtp_hostname }}"
       port: 587
       username: "{{ gmail_user }}"
       password: "{{ gmail_pass }}"
