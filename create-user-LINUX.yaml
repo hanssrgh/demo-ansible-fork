@@ -2,6 +2,7 @@
 - name: Create User
   gather_facts: no
   hosts: all
+  became: yes
   vars:
     ansible_become: true
     ansible_become_method: sudo
@@ -11,3 +12,4 @@
         name: '{{ var_user }}'
         group: '{{ var_group }}'
         password: '{{ var_password }}'
+        state: present
