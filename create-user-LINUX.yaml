@@ -2,6 +2,9 @@
 - name: Create User
   gather_facts: no
   hosts: all
+  vars:
+    ansible_become: true
+    ansible_become_method: enable
   tasks:
     - name: Add the user and Password , Assign to Group 
       user:
