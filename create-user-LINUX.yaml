@@ -3,7 +3,7 @@
   gather_facts: no
   hosts: all
   tasks:
-    - name: Add the user 'Adam Listek' with a specific uid and a primary group of 'sudo'
+    - name: Add the user and Password , Assign to Group 
       user:
         name: '{{ var_user }}'
         group: '{{ var_group }}'
