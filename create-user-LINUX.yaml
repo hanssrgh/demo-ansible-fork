@@ -2,6 +2,7 @@
 - name: Create User
   gather_facts: no
   hosts: all
+  become: yes
   vars:
     ansible_become: true
     ansible_become_method: sudo
