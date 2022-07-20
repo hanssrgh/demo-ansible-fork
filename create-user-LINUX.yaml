@@ -1,0 +1,10 @@
+---
+- name: Create User
+  gather_facts: no
+  hosts: all
+  tasks:
+    - name: Add the user 'Adam Listek' with a specific uid and a primary group of 'sudo'
+      user:
+        name: '{{ var_user }}'
+        group: '{{ var_group }}'
+        password: '{{ var_password }}'
