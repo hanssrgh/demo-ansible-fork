@@ -19,7 +19,7 @@
     - name: Add the user and Password , Assign to Group 
       user:
         name: '{{ var_user }}'
-        group: '{{ var_group }}'
+  #      group: '{{ var_group }}'
         password: '{{ var_password }}'
         groups: '{{ var_groups }}'
         shell: /bin/bash
