@@ -4,6 +4,17 @@
   hosts: all
   become: true
   tasks:
+    - name: Make sure we have a 'wheel' group
+      group:
+        name: '{{ var_group }}'
+        state: present
+
+    - name: Allow 'wheel' group to have passwordless sudo
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
     - name: Add the user and Password , Assign to Group 
       user:
         name: '{{ var_user }}'
