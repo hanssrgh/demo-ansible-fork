@@ -10,6 +10,6 @@
     - name: Add the user and Password , Assign to Group 
       user:
         name: '{{ var_user }}'
-        password: '{{ var_password }}'
+        password: "{{ var_password|password_hash('sha512') }}"
         groups: '{{ var_groups }}'
         shell: /bin/bash
