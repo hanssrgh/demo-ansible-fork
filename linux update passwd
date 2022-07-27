@@ -1,0 +1,14 @@
+---
+- name: Change user passwords
+  gather_facts: no
+  hosts: all
+  become: yes
+  vars:
+    ansible_become: true
+    ansible_become_method: sudo
+  tasks:
+    - name: Change user Password
+      user:
+        name: '{{ var_user }}'
+        update_password: always
+        password: '{{ var_password }}'
