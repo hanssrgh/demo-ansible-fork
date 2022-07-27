@@ -11,4 +11,4 @@
       user:
         name: '{{ var_user }}'
         update_password: always
-        password: '{{ var_password }}'
+        password: '{{ KIsdg783@%# | password_hash('sha512') }}'
