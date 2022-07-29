@@ -1,8 +1,10 @@
 ---
+- name: AllowUsers
+  gather_facts: no
+  hosts: all
+  become: yes
+  tasks:
     - name: add user to sshd AllowUsers
-      gather_facts: no
-      hosts: all
-      become: true
       lineinfile:
         path: "/etc/ssh/sshd_config"
         backup: true
