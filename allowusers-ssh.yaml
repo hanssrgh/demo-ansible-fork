@@ -11,8 +11,8 @@
         backrefs: true
         regexp: '^(AllowUsers(?!.*\b{{ var_user }}\b).*)$'
         replace: '\1 {{ var_user }}
-        #regex: "^AllowUsers\\s+(.*)$"
-        #line: "AllowUsers \\1 {{ var_user }}"
+        # regex: "^AllowUsers\\s+(.*)$"
+        # line: "AllowUsers \\1 {{ var_user }}"
         state: present
         validate: sshd -t -f %s
     - name: reload sshd
