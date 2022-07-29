@@ -9,8 +9,10 @@
         path: "/etc/ssh/sshd_config"
         backup: true
         backrefs: true
-        regexp: "^(AllowUsers(?!.*\b{{ var_user }}\b).*)$"
-        replace: "\1 {{ var_user }}"
+        line: "AllowUsers {{ var_user }}" 
+        insertafter: "AllowUsers"
+        #regexp: "^(AllowUsers(?!.*\b{{ var_user }}\b).*)$"
+        #replace: "\1 {{ var_user }}"
         state: present
         validate: sshd -t -f %s
     - name: reload sshd
