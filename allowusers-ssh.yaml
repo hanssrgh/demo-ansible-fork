@@ -1,0 +1,24 @@
+---
+- name: Create User
+  gather_facts: no
+  hosts: all
+  become: yes
+  task: 
+    - name: add user to sshd AllowUsers
+      become: true
+      ansible.builtin.lineinfile:
+        path: "/etc/ssh/sshd_config"
+        backup: true
+        backrefs: true
+        regex: "^AllowUsers\\s+(.*)$"
+        line: "AllowUsers \\1 {{ _sshd__allow_user }}"
+        state: present
+        validate: sshd -t -f %s
+      when:
+        - grep_allowusers.rc == 1
+      notify:
+        - "reload_sshd"
+    - name: reload sshd
+      service:
+        name: sshd
+        state: reloaded
