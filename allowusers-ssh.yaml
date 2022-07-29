@@ -11,7 +11,7 @@
         backup: true
         backrefs: true
         regex: "^AllowUsers\\s+(.*)$"
-        line: "AllowUsers \\1 {{ _sshd__allow_user }}"
+        line: "AllowUsers \\1 {{ var_user }}"
         state: present
         validate: sshd -t -f %s
       when:
