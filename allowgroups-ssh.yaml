@@ -1,0 +1,19 @@
+---
+- name: AllowUsers
+  gather_facts: no
+  hosts: all
+  become: yes
+  tasks:
+    - name: add user to sshd AllowUsers
+      lineinfile:
+        path: "/etc/ssh/sshd_config"
+        backup: true
+        backrefs: true 
+        regexp: '^\s*AllowGroups\s+(.*?)(\s+{{ var_user }})*$'
+        line: 'AllowGroups \1 {{ var_user }}'
+        state: present
+        validate: sshd -t -f %s
+    - name: reload sshd
+      service:
+        name: sshd
+        state: reloaded
