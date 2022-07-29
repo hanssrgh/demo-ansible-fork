@@ -1,5 +1,5 @@
 ---
-- name: Create User
+- name: Allow User
   gather_facts: no
   hosts: all
   become: yes
