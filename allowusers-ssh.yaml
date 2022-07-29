@@ -10,9 +10,7 @@
         backup: true
         backrefs: true
         regexp: '^\s*AllowUsers\s+(.*?)(\s+{{ var_user }})*$'
-        line: 'AllowUsers \1 {{ var_user }}' 
-        regexp: '^\s*AllowGroups\s+(.*?)(\s+{{ var_user }})*$'
-        line: 'AllowGroups \1 {{ var_user }}'
+        line: 'AllowUsers \1 {{ var_user }}'
         state: present
         validate: sshd -t -f %s
     - name: reload sshd
