@@ -1,9 +1,12 @@
 ---
+- name: Create User
+  gather_facts: no
+  hosts: all
+  become: yes
+  task:
     - name: add user to sshd AllowUsers
-      hosts: all
-      gather_facts: no
       become: true
-      ansible.builtin.lineinfile:
+      lineinfile:
         path: "/etc/ssh/sshd_config"
         backup: true
         backrefs: true
