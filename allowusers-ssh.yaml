@@ -13,8 +13,6 @@
         line: "AllowUsers \\1 {{ var_user }}"
         state: present
         validate: sshd -t -f %s
-      notify:
-        - "reload_sshd"
     - name: reload sshd
       service:
         name: sshd
