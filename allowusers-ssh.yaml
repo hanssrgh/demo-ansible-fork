@@ -1,10 +1,7 @@
 ---
-- name: Create User
-  gather_facts: no
-  hosts: all
-  become: yes
-  task:
     - name: add user to sshd AllowUsers
+      gather_facts: no
+      hosts: all
       become: true
       lineinfile:
         path: "/etc/ssh/sshd_config"
